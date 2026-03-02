@@ -1,0 +1,25 @@
+{
+  "imagePath": "image-targets/waves_luminance.jpeg",
+  "resources": {
+    "originalImage": "waves_original.jpeg",
+    "croppedImage": "waves_cropped.jpeg",
+    "thumbnailImage": "waves_thumbnail.jpeg",
+    "geometryImage": "waves_geometry.jpeg",
+    "luminanceImage": "waves_luminance.jpeg"
+  },
+  "name": "waves",
+  "type": "PLANAR",
+  "properties": {
+    "top": 160,
+    "left": 0,
+    "width": 720,
+    "height": 960,
+    "isRotated": true,
+    "originalWidth": 720,
+    "originalHeight": 1280
+  },
+  "userMetadataIsJson": true,
+  "loadAutomatically": true,
+  "created": 1750181819769,
+  "updated": 1750182349226
+}

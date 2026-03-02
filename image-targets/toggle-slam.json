@@ -1,0 +1,25 @@
+{
+  "imagePath": "image-targets/toggle-slam_luminance.png",
+  "resources": {
+    "originalImage": "toggle-slam_original.png",
+    "croppedImage": "toggle-slam_cropped.png",
+    "thumbnailImage": "toggle-slam_thumbnail.png",
+    "geometryImage": "toggle-slam_geometry.png",
+    "luminanceImage": "toggle-slam_luminance.png"
+  },
+  "name": "toggle-slam",
+  "type": "PLANAR",
+  "properties": {
+    "top": 85,
+    "left": 0,
+    "width": 1024,
+    "height": 1365,
+    "isRotated": true,
+    "originalWidth": 1024,
+    "originalHeight": 1536
+  },
+  "userMetadataIsJson": true,
+  "loadAutomatically": true,
+  "created": 1752602517654,
+  "updated": 1752602530117
+}
