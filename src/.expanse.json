@@ -137,12 +137,13 @@
       "camera": {
         "type": "perspective",
         "xr": {
-          "desktop": "disabled",
+          "desktop": "3D",
           "xrCameraType": "world",
           "headset": "AR",
           "phone": "AR",
           "world": {
-            "disableWorldTracking": false
+            "disableWorldTracking": true,
+            "enableVps": false
           }
         }
       },
@@ -345,7 +346,8 @@
       "material": null,
       "parentId": "a8f21946-b2fe-4589-9302-6232ec649775",
       "components": {},
-      "name": "Card"
+      "name": "Card",
+      "order": 0.07573564800948018
     },
     "fa9f1e85-91a8-4d7c-88e9-f63f0a3f0e81": {
       "id": "fa9f1e85-91a8-4d7c-88e9-f63f0a3f0e81",
@@ -864,7 +866,7 @@
       "id": "dabcb628-b0de-45ff-a469-80becf29083a",
       "position": [
         0,
-        0,
+        2.038994770395251,
         0
       ],
       "rotation": [
@@ -1408,7 +1410,7 @@
       },
       "name": "Image Target",
       "imageTarget": {
-        "name": "toggle-slam"
+        "name": "25_Element_Earth"
       },
       "order": 3.8421274092108453
     },
@@ -2241,6 +2243,127 @@
       "order": 17.028744183474238,
       "parentId": "377b65a9-0810-4e9a-8efd-261b32b1bd8b",
       "hidden": true
+    },
+    "2b9a607f-9e9d-427b-8036-6fc0dc6c5786": {
+      "id": "2b9a607f-9e9d-427b-8036-6fc0dc6c5786",
+      "position": [
+        -0.15385622353265083,
+        2.427002301792655,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        0.62,
+        0.62,
+        0.62
+      ],
+      "geometry": null,
+      "material": null,
+      "parentId": "88453035-dc0f-486d-868a-8ff7c2fda864",
+      "components": {},
+      "name": "Card (1)",
+      "order": 1.5877460220590647
+    },
+    "2f06637d-8ec1-4d00-8de4-6f0726861cf0": {
+      "id": "2f06637d-8ec1-4d00-8de4-6f0726861cf0",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "material": {
+        "type": "hider"
+      },
+      "parentId": "2b9a607f-9e9d-427b-8036-6fc0dc6c5786",
+      "components": {},
+      "gltfModel": {
+        "src": {
+          "type": "asset",
+          "asset": "assets/playing-cards/0_Card_Container.gltf/0_Card_Container.gltf"
+        },
+        "animationClip": "",
+        "loop": true
+      },
+      "name": "0_Card_Container.gltf (1)",
+      "order": 2.716933167964583
+    },
+    "c4269c9c-a78c-4012-9f86-86e72bde983b": {
+      "id": "c4269c9c-a78c-4012-9f86-86e72bde983b",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "parentId": "2b9a607f-9e9d-427b-8036-6fc0dc6c5786",
+      "components": {},
+      "gltfModel": {
+        "src": {
+          "type": "asset",
+          "asset": "assets/playing-cards/0_Card_Front.gltf/0_Card_Front.gltf"
+        },
+        "animationClip": "",
+        "loop": true
+      },
+      "name": "0_Card_Front.gltf (1)",
+      "order": 0.2059880580250355
+    },
+    "4a674e7b-5ff3-4395-81d3-0090f6fba613": {
+      "id": "4a674e7b-5ff3-4395-81d3-0090f6fba613",
+      "position": [
+        -3.805517581959049,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "scale": [
+        0.9999999999999998,
+        0.9999999999999998,
+        0.9999999999999998
+      ],
+      "parentId": "2b9a607f-9e9d-427b-8036-6fc0dc6c5786",
+      "components": {},
+      "gltfModel": {
+        "src": {
+          "type": "asset",
+          "asset": "assets/playing-cards/22_Element_Air.gltf/22_Element_Air.gltf"
+        },
+        "animationClip": "",
+        "loop": true
+      },
+      "name": "22_Element_Air.gltf (1)",
+      "order": 3.8259768816164055
     }
   },
   "spaces": {
@@ -2302,7 +2425,7 @@
       }
     }
   },
-  "entrySpaceId": "88453035-dc0f-486d-868a-8ff7c2fda864",
+  "entrySpaceId": "585f02ca-0418-46b7-8317-8926be71e007",
   "runtimeVersion": {
     "type": "version",
     "level": "major",
