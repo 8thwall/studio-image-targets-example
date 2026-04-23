@@ -4,22 +4,21 @@
     "originalImage": "toggle-slam_original.png",
     "croppedImage": "toggle-slam_cropped.png",
     "thumbnailImage": "toggle-slam_thumbnail.png",
-    "geometryImage": "toggle-slam_geometry.png",
     "luminanceImage": "toggle-slam_luminance.png"
   },
   "name": "toggle-slam",
   "type": "PLANAR",
   "properties": {
-    "top": 85,
-    "left": 0,
-    "width": 1024,
-    "height": 1365,
-    "isRotated": true,
-    "originalWidth": 1024,
-    "originalHeight": 1536
+    "top": 0,
+    "left": 384,
+    "width": 768,
+    "height": 1024,
+    "isRotated": false,
+    "originalWidth": 1536,
+    "originalHeight": 1024
   },
-  "userMetadataIsJson": true,
   "loadAutomatically": true,
   "created": 1752602517654,
-  "updated": 1752602530117
+  "updated": 1776980233360,
+  "metadata": null
 }
