@@ -20,15 +20,15 @@ https://8thwall.org/studio-image-targets-example
 
 ## BMO Bites
 
-<img alt="BMO Bites Cereal Box" src="./image-targets/bmo-bites_original.png" width=400 />
+<img alt="Cereal Box Image Target" src="./image-targets/bmo-bites_original.png" width=400 />
 
 ## Magic Photos
 
-<img alt="Waves" src="./image-targets/waves_original.jpg" width=400 />
+<img alt="Waves Image Target" src="./image-targets/waves_original.jpg" width=400 />
 
 ## Toggle SLAM
 
-<img alt="Scan to Toggle SLAM" src="./image-targets/toggle-slam_original.png" width=400 />
+<img alt="Scan to Toggle SLAM Image Target" src="./image-targets/toggle-slam_original.png" width=400 />
 
 </details>
 
@@ -39,12 +39,12 @@ https://8thwall.org/studio-image-targets-example
 3. Unzip the folder to the location you'd like to work in
 4. In the desktop app, click "Open" and select the folder
 5. To connect to a mobile device, follow [these instructions](https://8th.io/test-on-mobile)
-6. https://8thwall.org/docs/studio/guides/xr/image-targets
+6. When importing your own targets, please see [this guide](https://8thwall.org/docs/studio/guides/xr/image-targets) for more information
 7. Recommended: Track your files using [git](https://git-scm.com/about) to avoid losing progress
 
 ## Deployment
 
-This project contains Github Actions configuration for deployment to Github Pages. You can also follow the publishing instructions here: https://8thwall.org/docs/getting-started/publishing to publish to any other web host.
+This project contains Github Actions configuration for deployment to Github Pages, which triggers automatically by pushing the `main` branch. You can also follow the publishing instructions here: https://8thwall.org/docs/getting-started/publishing to publish to any other web host.
 
 ## Questions?
 
