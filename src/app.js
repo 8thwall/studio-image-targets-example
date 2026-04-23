@@ -10,6 +10,7 @@ const onxrloaded = () => {
       require('../image-targets/waves.json'),
     ],
   })
+  XR8.addCameraPipelineModule(LandingPage.pipelineModule())
 }
 window.XR8 ? onxrloaded() : window.addEventListener('xrloaded', onxrloaded)
 
