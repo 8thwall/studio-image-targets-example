@@ -29,6 +29,7 @@ ecs.registerComponent({
           mass: 1,
           shape: ecs.ColliderShape.Sphere,
           radius: 0.05,
+          type: ecs.ColliderType.Dynamic,
         })
 
         Coconut.set(world, ent)
