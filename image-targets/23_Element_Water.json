@@ -4,22 +4,21 @@
     "originalImage": "23_Element_Water_original.png",
     "croppedImage": "23_Element_Water_cropped.png",
     "thumbnailImage": "23_Element_Water_thumbnail.png",
-    "geometryImage": "23_Element_Water_geometry.png",
     "luminanceImage": "23_Element_Water_luminance.png"
   },
   "name": "23_Element_Water",
   "type": "PLANAR",
   "properties": {
-    "top": 112,
-    "left": 65,
-    "width": 620,
-    "height": 827,
+    "top": 161,
+    "left": 140,
+    "width": 480,
+    "height": 640,
     "isRotated": false,
     "originalWidth": 750,
     "originalHeight": 1050
   },
-  "userMetadataIsJson": true,
   "loadAutomatically": true,
   "created": 1744148020369,
-  "updated": 1744322346576
+  "updated": 1791847313650,
+  "metadata": null
 }
