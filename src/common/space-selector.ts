@@ -3,98 +3,81 @@ import * as ecs from '@8thwall/ecs'
 ecs.registerComponent({
   name: 'space-selector',
   schema: {
-    space1: ecs.string,
-    space2: ecs.string,
-    space3: ecs.string,
-    space4: ecs.string,
-    option1: ecs.eid,
-    option2: ecs.eid,
-    option3: ecs.eid,
-    option4: ecs.eid,
-    activeSpaceName: ecs.eid,
-    option1Name: ecs.eid,
-    option2Name: ecs.eid,
-    option3Name: ecs.eid,
-    option4Name: ecs.eid,
-    option1Icon: ecs.eid,
-    option2Icon: ecs.eid,
-    option3Icon: ecs.eid,
-    option4Icon: ecs.eid,
+    // @required
+    activeSpaceElement: ecs.eid,
+    // @required
+    optionPrefab: ecs.eid,
+    // @required
+    labelPrefab: ecs.eid,
+    // @required
+    iconPrefab: ecs.eid,
+    // @required
+    containerElement: ecs.eid,
   },
-  add: (world, component) => {
+  stateMachine: ({world, eid, schemaAttribute, defineState}) => {
     const {
-      space1, space2, space3, space4,
-      option1Name, option2Name, option3Name, option4Name,
-    } = component.schema
-
-    ecs.Ui.set(world, option1Name, {text: space1})
-    ecs.Ui.set(world, option2Name, {text: space2})
-    ecs.Ui.set(world, option3Name, {text: space3})
-    ecs.Ui.set(world, option4Name, {text: space4})
-  },
-  stateMachine: ({world, eid, schemaAttribute}) => {
-    const {
-      space1, space2, space3, space4,
-      option1, option2, option3, option4,
-      activeSpaceName,
-      option1Icon, option2Icon, option3Icon, option4Icon,
+      containerElement: containerElementEid,
+      activeSpaceElement,
+      optionPrefab,
+      iconPrefab,
+      labelPrefab,
     } = schemaAttribute.get(eid)
 
-    ecs.defineState('space1')
-      .initial()
-      .onEnter(() => {
-        console.log('space1')
-        world.spaces.loadSpace(space1)
-        ecs.Ui.set(world, activeSpaceName, {text: space1})
-        ecs.Hidden.remove(world, option1Icon)
-      })
-      .onExit(() => {
-        ecs.Hidden.set(world, option1Icon, {})
-      })
-      .onEvent(ecs.input.UI_CLICK, 'space2', {target: option2})
-      .onEvent(ecs.input.UI_CLICK, 'space3', {target: option3})
-      .onEvent(ecs.input.UI_CLICK, 'space4', {target: option4})
+    const containerElement = world.getEntity(containerElementEid)
 
-    ecs.defineState('space2')
-      .onEnter(() => {
-        console.log('space2')
-        world.spaces.loadSpace(space2)
-        ecs.Ui.set(world, activeSpaceName, {text: space2})
-        ecs.Hidden.remove(world, option2Icon)
-      })
-      .onExit(() => {
-        ecs.Hidden.set(world, option2Icon, {opacity: 0})
-      })
-      .onEvent(ecs.input.UI_CLICK, 'space1', {target: option1})
-      .onEvent(ecs.input.UI_CLICK, 'space3', {target: option3})
-      .onEvent(ecs.input.UI_CLICK, 'space4', {target: option4})
+    // Clear placeholder elements
+    containerElement.getChildren().forEach(c => c.delete())
 
-    ecs.defineState('space3')
-      .onEnter(() => {
-        console.log('space3')
-        world.spaces.loadSpace(space3)
-        ecs.Ui.set(world, activeSpaceName, {text: space3})
-        ecs.Hidden.remove(world, option3Icon)
-      })
-      .onExit(() => {
-        ecs.Hidden.set(world, option3Icon, {opacity: 0})
-      })
-      .onEvent(ecs.input.UI_CLICK, 'space1', {target: option1})
-      .onEvent(ecs.input.UI_CLICK, 'space2', {target: option2})
-      .onEvent(ecs.input.UI_CLICK, 'space4', {target: option4})
+    const options = world.spaces.listSpaces().filter(e => e.name !== 'Space Selector').map((space) => {
+      // Spawn an option in the dropdown for each space
+      const optionEid = world.createEntity(optionPrefab)
+      const iconElement = world.getEntity(world.getInstanceEntity(optionEid, iconPrefab))
+      ecs.Ui.set(world, world.getInstanceEntity(optionEid, labelPrefab), {text: space.name})
+      containerElement.addChild(optionEid)
 
-    ecs.defineState('space4')
-      .onEnter(() => {
-        console.log('space4')
-        world.spaces.loadSpace(space4)
-        ecs.Ui.set(world, activeSpaceName, {text: space4})
-        ecs.Hidden.remove(world, option4Icon)
+      return {
+        space,
+        stateName: space.id,
+        optionEid,
+        iconElement,
+        trigger: ecs.defineTrigger(),
+      }
+    })
+
+    containerElement.set(ecs.Ui, {height: String(options.length * 35)})
+
+    const initialSpaceIndex = Math.max(
+      0,
+      options.findIndex(e => e.space.id == world.spaces.getActiveSpace().id)
+    )
+
+    options.forEach(({space, stateName, iconElement}, index) => {
+      const state = defineState(stateName).onEnter(() => {
+        if (world.spaces.getActiveSpace().id !== space.id) {
+          world.spaces.loadSpace(space.id)
+        }
+        ecs.Ui.set(world, activeSpaceElement, {text: space.name})
+        iconElement.show()
       })
-      .onExit(() => {
-        ecs.Hidden.set(world, option4Icon, {})
+        .onExit(() => {
+          iconElement.hide()
+        }).listen(world.events.globalId, ecs.CameraEvents.ACTIVE_CAMERA_CHANGE, () => {
+          // After a space changes, this event will trigger a transition to the newly active space.
+          const newActiveSpace = world.spaces.getActiveSpace().id
+          options.find(e => e.space.id === newActiveSpace)?.trigger.trigger()
+        })
+
+      options.forEach((other, otherIndex) => {
+        if (index !== otherIndex) {
+          // Clicking any other option will transition to that state
+          state.onEvent(ecs.input.UI_CLICK, other.stateName, {target: other.optionEid})
+          state.onTrigger(other.trigger, other.stateName)
+        }
       })
-      .onEvent(ecs.input.UI_CLICK, 'space1', {target: option1})
-      .onEvent(ecs.input.UI_CLICK, 'space2', {target: option2})
-      .onEvent(ecs.input.UI_CLICK, 'space3', {target: option3})
+
+      if (initialSpaceIndex === index) {
+        state.initial()
+      }
+    })
   },
 })
