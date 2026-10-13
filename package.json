@@ -25,6 +25,6 @@
     "webpack-virtual-modules": "^0.6.2"
   },
   "dependencies": {
-    "@8thwall/ecs": "^3.2.0"
+    "@8thwall/ecs": "^3.2.1"
   }
 }
